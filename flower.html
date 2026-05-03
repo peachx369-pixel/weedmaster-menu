@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top Shelf Flower Menu</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Abril+Fatface&family=Josefin+Sans:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #D4AF37;
+    --gold-light: #F2D571;
+    --gold-dark: #9A7B1E;
+    --black: #0A0A0A;
+    --dark: #111111;
+    --card-bg: #141414;
+    --text: #E8E0D0;
+    --text-muted: #8A8070;
+    --border: rgba(212,175,55,0.3);
+  }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--black);
+  color: var(--text);
+  font-family: 'Josefin Sans', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px 40px;
+  position: relative;
+}
+
+/* === HEADER === */
+.header {
+  text-align: center;
+  padding: 32px 0 28px;
+  position: relative;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 36px;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.header-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.45em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.header-label::before, .header-label::after {
+  content: '✦';
+  font-size: 7px;
+  opacity: 0.6;
+}
+
+.header h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(52px, 10vw, 88px);
+  letter-spacing: 0.08em;
+  line-height: 0.9;
+  background: linear-gradient(180deg, #FFF8DC 0%, var(--gold-light) 40%, var(--gold) 70%, var(--gold-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+  margin-bottom: 6px;
+}
+
+.header-sub {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--gold-light);
+  letter-spacing: 0.12em;
+  margin-bottom: 4px;
+}
+
+.header-by {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  color: var(--gold-dark);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.header-tags {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-top: 14px;
+}
+
+.header-tags span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-tags span::before {
+  content: '◆';
+  font-size: 5px;
+  color: var(--gold);
+}
+
+.badges {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.badge {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10,10,10,0.9);
+  font-size: 7.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--gold);
+  line-height: 1.3;
+}
+
+/* === STRAIN GRID === */
+.strains-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.strains-grid-bottom {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 36px;
+}
+
+/* === STRAIN CARD === */
+.card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+}
+
+.card-inner {
+  padding: 0 18px 20px;
+}
+
+/* Fruit image area */
+.fruit-zone {
+  height: 150px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+}
+
+.fruit-emoji {
+  font-size: 72px;
+  filter: drop-shadow(0 4px 20px rgba(0,0,0,0.6));
+  position: relative;
+  z-index: 2;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(-2deg); }
+  50% { transform: translateY(-8px) rotate(2deg); }
+}
+
+.card:nth-child(2) .fruit-emoji { animation-delay: -1.5s; }
+.card:nth-child(3) .fruit-emoji { animation-delay: -3s; }
+
+.fruit-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.25;
+  background: radial-gradient(ellipse at 50% 60%, currentColor 0%, transparent 70%);
+}
+
+/* Card number */
+.card-num {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold);
+  background: rgba(0,0,0,0.7);
+  z-index: 5;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+/* Type badge */
+.type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid currentColor;
+  margin: -10px auto 14px;
+  position: relative;
+  z-index: 3;
+  display: flex;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  background: var(--card-bg);
+}
+
+/* Strain name */
+.strain-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.04em;
+  line-height: 0.95;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.strain-name .line2 {
+  display: block;
+  font-size: 22px;
+  letter-spacing: 0.06em;
+  color: var(--text);
+}
+
+/* Info rows */
+.info-block {
+  margin-bottom: 10px;
+}
+
+.info-label {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.info-content {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-align: center;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.dot-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px 6px;
+}
+
+.dot-list span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+}
+
+.dot-list span::before {
+  content: '•';
+  color: var(--gold);
+  font-size: 10px;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 10px 0;
+}
+
+.effects-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.effect-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.effect-icon {
+  font-size: 14px;
+}
+
+/* Tag strip */
+.tag-strip {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: rgba(0,0,0,0.3);
+  border-top: 1px solid rgba(255,255,255,0.04);
+  flex-wrap: wrap;
+}
+
+.tag-strip span {
+  font-size: 7.5px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.tag-strip span:not(:last-child)::after {
+  content: '|';
+  margin-left: 6px;
+  opacity: 0.3;
+}
+
+/* === COLOR THEMES === */
+.theme-purple { --accent: #9B59B6; --accent-light: #C39BD3; }
+.theme-yellow { --accent: #F0B429; --accent-light: #F7DC6F; }
+.theme-green  { --accent: #27AE60; --accent-light: #82E0AA; }
+.theme-citrus { --accent: #E8A020; --accent-light: #F5D078; }
+.theme-berry  { --accent: #E91E8C; --accent-light: #F48DCC; }
+
+.card .fruit-zone { background: radial-gradient(ellipse at 50% 80%, var(--accent) 0%, transparent 70%), var(--dark); }
+.card .fruit-glow { color: var(--accent); }
+.card .strain-name { color: var(--accent-light); }
+.card .strain-name .line2 { color: var(--text); }
+.card .type-badge { color: var(--accent-light); border-color: var(--accent); }
+
+/* === FOOTER === */
+.footer-bar {
+  border-top: 1px solid var(--border);
+  padding-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  text-align: center;
+}
+
+.footer-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer-icon {
+  font-size: 22px;
+  color: var(--gold);
+}
+
+.footer-label {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.price-tag {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 44px;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.price-unit {
+  font-size: 14px;
+  color: var(--gold-dark);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-top: -4px;
+}
+
+.disclaimer {
+  text-align: center;
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.disclaimer span::before {
+  content: '⚠ ';
+  font-size: 8px;
+}
+
+@media (max-width: 600px) {
+  .strains-grid { grid-template-columns: 1fr; }
+  .strains-grid-bottom { grid-template-columns: 1fr; }
+  .header h1 { font-size: 52px; }
+  .footer-bar { grid-template-columns: repeat(2, 1fr); }
+  .badges { display: none; }
+}
+
+/* === SOLD OUT === */
+.card.sold-out {
+  opacity: 0.45;
+  filter: grayscale(0.6);
+  pointer-events: none;
+}
+.sold-out .fruit-emoji {
+  animation: none !important;
+}
+.sold-banner {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-18deg);
+  z-index: 20;
+  background: linear-gradient(135deg, #aa0000, #ff1a1a);
+  color: #fff;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.18em;
+  padding: 8px 22px;
+  border-radius: 6px;
+  border: 2px solid rgba(255,255,255,0.4);
+  box-shadow: 0 4px 24px rgba(200,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.2);
+  white-space: nowrap;
+  pointer-events: none;
+}
+.card.sold-out .sold-banner {
+  display: block;
+}
+</style>
+
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="badges">
+      <div class="badge">🌿<br>Premium<br>Quality</div>
+      <div class="badge">👑<br>Limited<br>Drop</div>
+    </div>
+    <div class="header-label">Top Shelf</div>
+    <h1>FLOWER<br>MENU</h1>
+    <div class="header-sub">Premium Selection</div>
+    <div class="header-by">By Weedmaster</div>
+    <div class="header-tags">
+      <span>Hand Selected</span>
+      <span>Top Quality Flower</span>
+      <span>Lab Verified</span>
+    </div>
+  </div>
+
+  <!-- TOP ROW: 3 cards -->
+  <div class="strains-grid">
+
+    <!-- 1. GRAPE STANK -->
+    <div class="card theme-purple" data-name="Grape Stank">
+      <div class="sold-banner">SOLD OUT</div>
+      <div class="card-num">1</div>
+      <div class="fruit-zone">
+        <div class="fruit-glow"></div>
+        <div class="fruit-emoji">🍇</div>
+      </div>
+      <div class="card-inner">
+        <div class="type-badge">🌿 Sativa Hybrid</div>
+        <div class="strain-name">GRAPE<span class="line2">STANK</span></div>
+
+        <div class="info-block">
+          <div class="info-label">Flavor</div>
+          <div class="dot-list">
+            <span>Grape</span><span>Berry</span><span>Gas</span><span>Citrus</span>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="info-block">
+          <div class="info-label">Terpenes</div>
+          <div class="dot-list">
+            <span>Myrcene</span><span>Limonene</span><span>Caryophyllene</span>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="effects-row">
+          <div class="effect-item"><span class="effect-icon">😊</span>Euphoric</div>
+          <div class="effect-item"><span class="effect-icon">😌</span>Relaxed</div>
+          <div class="effect-item"><span class="effect-icon">⬆️</span>Uplifted</div>
+        </div>
+      </div>
+      <div class="tag-strip">
+        <span>Sweet Grape</span><span>Loud Aroma</span><span>Balanced High</span>
+      </div>
+    </div>
+
+    <!-- 2. BANANA CONDA -->
+    <div class="card theme-yellow" data-name="Banana Conda">
+      <div class="sold-banner">SOLD OUT</div>
+      <div class="card-num">2</div>
+      <div class="fruit-zone">
+        <div class="fruit-glow"></div>
+        <div class="fruit-emoji">🍌</div>
+      </div>
+      <div class="card-inner">
+        <div class="type-badge">🌿 Indica-Dom</div>
+        <div class="strain-name">BANANA<span class="line2">CONDA</span></div>
+
+        <div class="info-block">
+          <div class="info-label">Flavor</div>
+          <div class="dot-list">
+            <span>Banana</span><span>Vanilla</span><span>Cream</span><span>Gas</span>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="info-block">
+          <div class="info-label">Terpenes</div>
+          <div class="dot-list">
+            <span>Myrcene</span><span>Limonene</span><span>Caryophyllene</span>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="effects-row">
+          <div class="effect-item"><span class="effect-icon">😴</span>Sleepy</div>
+          <div class="effect-item"><span class="effect-icon">😌</span>Relaxed</div>
+          <div class="effect-item"><span class="effect-icon">🛋️</span>Heavy</div>
+        </div>
+      </div>
+      <div class="tag-strip">
+        <span>Banana Cream</span><span>Deep Relax</span><span>Night Time</span>
+      </div>
+    </div>
+
+    <!-- 3. ANIMAL TUZNAMI -->
+    <div class="card theme-green" data-name="Animal Tuznami">
+      <div class="sold-banner">SOLD OUT</div>
+      <div class="card-num">3</div>
+      <div class="fruit-zone">
+        <div class="fruit-glow"></div>
+        <div class="fruit-emoji">🍪</div>
+      </div>
+      <div class="card-inner">
+        <div class="type-badge">🌿 Indica-Dom</div>
+        <div class="strain-name">ANIMAL<span class="line2">TUZNAMI</span></div>
+
+        <div class="info-block">
+          <div class="info-label">Flavor</div>
+          <div class="dot-list">
+            <span>Sweet Cookie</span><span>Caramel</span><span>Earthy</span><span>Pine</span>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="info-block">
+          <div class="info-label">Terpenes</div>
+          <div class="dot-list">
+            <span>Limonene</span><span>Caryophyllene</span><span>Myrcene</span>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="effects-row">
+          <div class="effect-item"><span class="effect-icon">🔒</span>Sedating</div>
+          <div class="effect-item"><span class="effect-icon">😌</span>Relaxed</div>
+          <div class="effect-item"><span class="effect-icon">🌙</span>Sleepy</div>
+        </div>
+      </div>
+      <div class="tag-strip">
+        <span>Pungent Sweet</span><span>Deep Relax</span><span>Night Time</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM ROW: 2 cards -->
+  <div class="strains-grid-bottom">
+
+    <!-- 4. LEMON BANANA -->
+    <div class="card theme-citrus" data-name="Lemon Banana">
+      <div class="sold-banner">SOLD OUT</div>
+      <div class="card-num">4</div>
+      <div class="fruit-zone">
+        <div class="fruit-glow"></div>
+        <div class="fruit-emoji">🍋</div>
+      </div>
+      <div class="card-inner">
+        <div class="type-badge">🌿 Hybrid</div>
+        <div class="strain-name">LEMON<span class="line2">BANANA</span></div>
+
+        <div class="info-block">
+          <div class="info-label">Flavor</div>
+          <div class="dot-list">
+            <span>Citrus</span><span>Lemon</span><span>Banana</span><span>Sweet</span><span>Earthy</span>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="info-block">
+          <div class="info-label">Terpenes</div>
+          <div class="dot-list">
+            <span>Limonene</span><span>Myrcene</span><span>Caryophyllene</span>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="effects-row">
+          <div class="effect-item"><span class="effect-icon">⚡</span>Energetic</div>
+          <div class="effect-item"><span class="effect-icon">😄</span>Euphoric</div>
+          <div class="effect-item"><span class="effect-icon">💫</span>Creative</div>
+          <div class="effect-item"><span class="effect-icon">😌</span>Relaxed</div>
+        </div>
+      </div>
+      <div class="tag-strip">
+        <span>Zesty &amp; Sweet</span><span>Uplifting</span><span>All-Day Smoke</span>
+      </div>
+    </div>
+
+    <!-- 5. CRUNCH BERRY -->
+    <div class="card theme-berry" data-name="Crunch Berry">
+      <div class="sold-banner">SOLD OUT</div>
+      <div class="card-num">5</div>
+      <div class="fruit-zone">
+        <div class="fruit-glow"></div>
+        <div class="fruit-emoji">🫐</div>
+      </div>
+      <div class="card-inner">
+        <div class="type-badge">🌿 Indica-Dom</div>
+        <div class="strain-name">CRUNCH<span class="line2">BERRY</span></div>
+
+        <div class="info-block">
+          <div class="info-label">Flavor</div>
+          <div class="dot-list">
+            <span>Blueberry</span><span>Berry</span><span>Sweet</span><span>Pine</span><span>Earth</span>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="info-block">
+          <div class="info-label">Terpenes</div>
+          <div class="dot-list">
+            <span>Myrcene</span><span>Caryophyllene</span><span>Pinene</span><span>Limonene</span>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="effects-row">
+          <div class="effect-item"><span class="effect-icon">😊</span>Happy</div>
+          <div class="effect-item"><span class="effect-icon">💡</span>Creative</div>
+          <div class="effect-item"><span class="effect-icon">😌</span>Relaxed</div>
+          <div class="effect-item"><span class="effect-icon">☮️</span>Peaceful</div>
+        </div>
+      </div>
+      <div class="tag-strip">
+        <span>Sweet &amp; Fruity</span><span>Euphoric Buzz</span><span>End-of-Day</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-bar">
+    <div class="footer-item">
+      <div class="price-tag">1250</div>
+      <div class="price-unit">THB / 10G</div>
+    </div>
+    <div class="footer-item">
+      <div class="footer-icon">🏆</div>
+      <div class="footer-label">Top Shelf<br>Premium Flower</div>
+    </div>
+    <div class="footer-item">
+      <div class="footer-icon">✂️</div>
+      <div class="footer-label">Hand Trimmed<br>Big Buds First</div>
+    </div>
+    <div class="footer-item">
+      <div class="footer-icon">📦</div>
+      <div class="footer-label">Shipping from<br>Bangkok<br>Discreet Package</div>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    <span>For Adult Use Only 18+</span>
+    <span>Keep Out of Reach of Children</span>
+  </div>
+
+</div>
+<!-- ============================================
+     แก้ไขตรงนี้เพื่ออัปเดตสต็อก
+     true  = หมดแล้ว (โชว์ SOLD OUT)
+     false = มีสินค้า
+============================================ -->
+<script>
+const STOCK = {
+  "Grape Stank":    false,
+  "Banana Conda":   false,
+  "Animal Tuznami": false,
+  "Lemon Banana":   false,
+  "Crunch Berry":   false,
+};
+
+document.querySelectorAll('.card[data-name]').forEach(card => {
+  if (STOCK[card.dataset.name] === true) {
+    card.classList.add('sold-out');
+  }
+});
+</script>
+</body>
+</html>
