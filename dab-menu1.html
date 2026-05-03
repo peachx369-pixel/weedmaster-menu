@@ -561,4 +561,12 @@ document.querySelectorAll('.card[data-name]').forEach(c=>{
   if(STOCK[c.dataset.name]===true) c.classList.add('sold-out');
 });
 const ro=new IntersectionObserver(e=>e.forEach((x,i)=>{if(x.isIntersecting)setTimeout(()=>x.target.classList.add('visible'),i*60);}),{threshold:.08});
-document.querySelectorAll('.reveal').fo
+document.querySelectorAll('.reveal').forEach(e=>ro.observe(e));
+</script>
+
+
+
+
+
+</body>
+</html>
