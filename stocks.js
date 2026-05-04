@@ -11,7 +11,7 @@ const STOCK = {
   "Horchata":              false,
   "Watermelon Moonshine":  false,
   "Galactic Diesel":       false,
-  "Habibi":                false,
+  "Habibi":                true,
   "Pineapple Paradise":    false,
   "Sweet Dream OG":        false,
   "Frozen Pomegranate":    false,
