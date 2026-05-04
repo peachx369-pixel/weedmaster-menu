@@ -28,7 +28,7 @@ const STOCK = {
   // --- FRYD EXTRACTS ---
   "Tangie Taffy":          false,
   "Dirty Sprite":          true,
-  "Apple Juice":           false,
+  "Apple Juice":           true,
   "Pink Slushie":          false,
   "Blueberry Slushie":     false,
   "Peach Rings":           false,
