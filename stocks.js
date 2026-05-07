@@ -32,7 +32,7 @@ const STOCK = {
   "Pink Slushie":          false,
   "Blueberry Slushie":     false,
   "Peach Rings":           false,
-  "Blue Gummy Shark":      false,
+  "Blue Gummy Shark":      true,
   "Strawberry Lemoncello": true,
   "Baja Blast":            true,
   "Orange Gobstopper":     false,
